@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Sign-in Code – AnimationStudio Uploader</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="brand" href="index.html">AnimationStudio Uploader</a>
+  <nav>
+    <a href="privacy.html">Privacy Policy</a>
+    <a href="terms.html">Terms of Service</a>
+  </nav>
+</header>
+<main>
+  <h1>Sign-in code</h1>
+  <p class="meta">This page only shows the code from the address bar. Nothing is sent or stored.</p>
+
+  <div class="card" id="result">
+    <p>No code found in the address. Open this page through the TikTok sign-in.</p>
+  </div>
+</main>
+<footer><a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></footer>
+</div>
+<script>
+(function () {
+  var p = new URLSearchParams(location.search);
+  var box = document.getElementById('result');
+  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  if (p.get('error')) {
+    box.innerHTML = '<p><strong>Sign-in failed:</strong></p><span class="code">' + esc(p.get('error')) +
+      (p.get('error_description') ? ' – ' + esc(p.get('error_description')) : '') + '</span>';
+    return;
+  }
+  var code = p.get('code');
+  if (!code) return;
+  box.innerHTML =
+    '<p><strong>Code</strong> (copy it and send it to your tool):</p>' +
+    '<span class="code" id="code">' + esc(code) + '</span>' +
+    '<button type="button" id="copy">Copy code</button>' +
+    (p.get('state') ? '<p class="meta" style="margin-top:16px">state: <code>' + esc(p.get('state')) + '</code></p>' : '') +
+    '<p class="meta">The code expires after a few minutes and can only be used once.</p>';
+  document.getElementById('copy').onclick = function () {
+    var btn = this;
+    try {
+      navigator.clipboard.writeText(code).then(function () { btn.textContent = 'Copied'; },
+        function () { btn.textContent = 'Select the code and copy it manually'; });
+    } catch (e) { btn.textContent = 'Select the code and copy it manually'; }
+  };
+})();
+</script>
+</body>
+</html>

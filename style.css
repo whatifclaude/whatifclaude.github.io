@@ -1,0 +1,41 @@
+:root {
+  --bg: #fbfaf7;
+  --surface: #ffffff;
+  --text: #1d1d1f;
+  --muted: #5d5d66;
+  --accent: #2f6f4f;
+  --border: #e4e1da;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141416;
+    --surface: #1c1c1f;
+    --text: #ececef;
+    --muted: #a3a3ad;
+    --accent: #7cc49d;
+    --border: #2e2e33;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+.wrap { max-width: 760px; margin: 0 auto; padding: 32px 16px 64px; }
+header { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: baseline; border-bottom: 1px solid var(--border); padding-bottom: 16px; margin-bottom: 32px; }
+header .brand { font-weight: 700; font-size: 18px; color: var(--text); text-decoration: none; margin-right: auto; }
+header nav { display: flex; flex-wrap: wrap; gap: 4px 16px; }
+nav a, main a { color: var(--accent); }
+nav a { text-decoration: none; font-size: 15px; }
+nav a:hover { text-decoration: underline; }
+h1 { font-size: 30px; line-height: 1.25; margin: 0 0 8px; }
+h2 { font-size: 20px; margin: 36px 0 8px; }
+.meta { color: var(--muted); font-size: 14px; margin: 0 0 24px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; margin: 20px 0; }
+code, .code { font-family: ui-monospace, Consolas, monospace; font-size: 14px; word-break: break-all; }
+.code { display: block; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 12px; margin: 8px 0 12px; }
+button { font: inherit; background: var(--accent); color: var(--surface); border: 0; border-radius: 8px; padding: 8px 16px; cursor: pointer; }
+footer { margin-top: 56px; padding-top: 16px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
+ul { padding-left: 22px; }
